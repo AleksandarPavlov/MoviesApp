@@ -11,5 +11,7 @@ namespace ConnectionTest.Data
         public DbSet<User> User { get; set; }
 
         public DbSet<Movie> Movie { get; set; }
+
+        public DbSet<Trailer> Trailer { get; set; }
     }
 }

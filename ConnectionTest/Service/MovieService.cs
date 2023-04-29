@@ -17,9 +17,18 @@ namespace ConnectionTest.Service
             return _movieRepository.getMovieById(id);
         }
 
+        public List<Movie> GetAllMovies()
+        {
+            return _movieRepository.getAllMovies();
+        }
         public Movie CreateMovie(Movie newMovie)
         {
             return _movieRepository.CreateMovie(newMovie);
+        }
+
+        public List<string> GetAllCategories()
+        {
+            return _movieRepository.GetAllCategories();
         }
     }
 }

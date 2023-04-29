@@ -1,5 +1,6 @@
 ﻿using ConnectionTest.Data;
 using ConnectionTest.Service;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConnectionTest.Controllers
@@ -27,11 +28,35 @@ namespace ConnectionTest.Controllers
             return movie;
         }
 
+        [HttpGet()]
+        public ActionResult<List<Movie>> GetAllMovies()
+        {
+            var movies = _movieService.GetAllMovies ();
+            if (movies == null)
+            {
+                return NotFound();
+            }
+
+            return movies;
+        }
+
         [HttpPost()]
         public ActionResult<Movie> CreateUser(Movie newMovie)
         {
             var movie = _movieService.CreateMovie(newMovie);
             return movie;
+        }
+
+        [HttpGet("categories")]
+        public ActionResult<List<string>> GetAllCategories()
+        {
+            var categories = _movieService.GetAllCategories();
+            if (categories == null)
+            {
+                return NotFound();
+            }
+
+            return categories;
         }
     }
 }

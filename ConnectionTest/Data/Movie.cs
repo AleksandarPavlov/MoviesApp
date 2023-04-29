@@ -10,6 +10,8 @@
 
         private string category;
 
+        private string image;
+
         private int rating;
 
         private DateTime releaseDate;
@@ -39,6 +41,12 @@
         {
             get { return category; }
             set { category = value; }
+        }
+
+        public string Image
+        {
+            get { return image; }
+            set { image = value; }
         }
 
         public int Rating
