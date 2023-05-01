@@ -12,7 +12,7 @@
 
         private string image;
 
-        private int rating;
+        private float rating;
 
         private DateTime releaseDate;
 
@@ -49,7 +49,7 @@
             set { image = value; }
         }
 
-        public int Rating
+        public float Rating
         {
             get { return rating; }
             set { rating = value; }

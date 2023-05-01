@@ -8,6 +8,8 @@
 
         private string link;
 
+        private DateTime releaseDate;
+
         public int Id
         {
             get { return id; }
@@ -25,6 +27,11 @@
             set { link = value; }
         }
 
+        public DateTime ReleaseDate
+        {
+            get { return releaseDate; }
+            set { releaseDate = value; }
+        }
         public Trailer() { 
         
         }

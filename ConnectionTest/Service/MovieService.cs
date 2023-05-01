@@ -21,6 +21,22 @@ namespace ConnectionTest.Service
         {
             return _movieRepository.getAllMovies();
         }
+        public List<Movie> GetTopRatedMovies()
+        {
+            return _movieRepository.getTopRatedMovies();
+        }
+        public List<Movie> GetNewestMovies(int page)
+        {
+            return _movieRepository.GetNewestMovies(page);
+        }
+        public List<Movie> GetMoviesByCategory(string category)
+        {
+            return _movieRepository.GetMoviesByCategory(category);
+        }
+        public List<Movie> GetTopRatedMoviesSorted(string sort)
+        {
+            return _movieRepository.GetTopRatedMoviesSorted(sort);
+        }
         public Movie CreateMovie(Movie newMovie)
         {
             return _movieRepository.CreateMovie(newMovie);

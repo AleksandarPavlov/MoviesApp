@@ -2,6 +2,7 @@
 using ConnectionTest.Service;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConnectionTest.Controllers
 {
@@ -40,11 +41,65 @@ namespace ConnectionTest.Controllers
             return movies;
         }
 
-        [HttpPost()]
-        public ActionResult<Movie> CreateUser(Movie newMovie)
+        [HttpGet("best")]
+        public ActionResult<List<Movie>> GetTopRatedMovies()
         {
-            var movie = _movieService.CreateMovie(newMovie);
-            return movie;
+            var movies = _movieService.GetTopRatedMovies();
+            if (movies == null)
+            {
+                return NotFound();
+            }
+
+            return movies;
+        }
+
+        [HttpGet("chart/top")]
+        public ActionResult<List<Movie>> GetTopRatedMoviesSorted(string sort)
+        {
+            var movies = _movieService.GetTopRatedMoviesSorted(sort);
+            if (movies == null)
+            {
+                return NotFound();
+            }
+
+            return movies;
+        }
+
+        [HttpGet("genre")]
+        public ActionResult<List<Movie>> GetMoviesByCategory([FromQuery] string category)
+        {
+            var movies = _movieService.GetMoviesByCategory(category);
+            if (movies.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return movies;
+        }
+
+        [HttpGet("newest/{page}")]
+        public ActionResult<List<Movie>> GetNewestMovies(int page)
+        {
+            var movies = _movieService.GetNewestMovies(page);
+            if (movies == null)
+            {
+                return NotFound();
+            }
+
+            return movies;
+        }
+
+
+        [HttpPost()]
+        public ActionResult<List<Movie>> CreateMovies(List<Movie> newMovies)
+        {
+            var movies = new List<Movie>();
+            foreach (var newMovie in newMovies)
+            {
+                var movie = _movieService.CreateMovie(newMovie);
+                movies.Add(movie);
+            }
+            return movies;
         }
 
         [HttpGet("categories")]
